@@ -1,0 +1,9 @@
+dist: xenial
+language: minimal
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y pandoc
+after_success:
+  # pre-convert SUMMARY.md to static HTML, save in _includes/ folder
+  - pandoc --from gfm --to html SUMMARY.md --output SUMMARY.html
+  - cat SUMMARY.html
