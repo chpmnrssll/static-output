@@ -4,7 +4,6 @@
 
 * [Platform Overview](README.md)
 
-
 ## Know Your Customer \(KYC\)
 
 * [What is KYC?](know-your-customer-kyc/what-is-kyc.md)
