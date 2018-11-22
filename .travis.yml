@@ -1,9 +1,0 @@
-language: minimal
-before_install:
-  - sudo apt-get update -qq
-  - wget https://github.com/jgm/pandoc/releases/download/2.4/pandoc-2.4-1-amd64.deb
-  - sudo dpkg -i pandoc-2.4-1-amd64.deb
-after_success:
-  - ls -a
-  - pandoc --from markdown_github --to html SUMMARY.md --output SUMMARY.html
-  - cat SUMMARY.html
