@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="how-to-verify-kaleido-connectivity" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="how-to-verify-kaleido-connectivity">How to verify Kaleido Connectivity</h1>
+
+<p><strong>Problem:</strong>
+You have created the Kaleido node (Ethereum/Quorum hosted by Kaleido) and you need to test the connectivity from a machine</p>
+
+<p><strong>Solution:</strong></p>
+
+<p>Step-by-step guide</p>
+
+<ol>
+  <li>Gather required variables:
+    <ul>
+      <li>KALEIDO_HOST=&lt;kaleido host WITHOUT https://&gt;</li>
+      <li>KALEIDO_USER=<kaleido app="" credential="" username.="" looks="" like="" e0j5m5892p=""></kaleido></li>
+      <li>KALEIDO_PASSWORD=<kaleido app="" credential="" password.="" was="" given="" at="" the="" time="" of="" creation.="" looks="" like="" bFqFxbQxLxrxxxxxxxxxxxxiPAyIDfxwvPYj728=""></kaleido></li>
+    </ul>
+  </li>
+  <li>Note: if you loose an App credential password, no worry:
+    <ul>
+      <li>Delete the app credential from Kaleido</li>
+      <li>Create a brand new one and keep the password safe (this time)</li>
+      <li>Correct your variables. It will work as well as the previous one</li>
+    </ul>
+  </li>
+  <li>Test connection:</li>
+</ol>
+
+<p>Use a script with the following:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>KALEIDO_HOST=e0sbix33oc-e0mzbcbnw6-rpc.eu-central-1.kaleido.io
+KALEIDO_USER=e0j5m5892p
+KALEIDO_PASSWORD=bFqFxbQxLxrxxxxxxxxxxxxiPAyIDfxwvPYj728
+ret=`curl -s -o /dev/null -w "%{http_code}" -X POST -d '{"jsonrpc":"2.0","id":1,"method":"eth_accounts","params":[]}' https://$KALEIDO_USER:$KALEIDO_PASSWORD@$KALEIDO_HOST`
+if [ "$ret" -ne 200 ]
+then
+  echo "Connection to node failed with error code $ret. Check variables"
+# you can run the same command with option -v (verbose) instead of -s -o /dev/null -w "%{http_code}" to debug failure or get your eth account
+else
+  echo "Connection to node is successfull"
+fi
+</code></pre></div></div>
+<ol>
+  <li>If you have a proxy, add the curl proxy attributes</li>
+</ol>
+
+<p>-x, –proxy [PROTOCOL://]HOST[:PORT] Use proxy on given port</p>
+
+<p>–proxy-anyauth Pick “any” proxy authentication method (H)</p>
+
+<p>–proxy-basic Use Basic authentication on the proxy (H)</p>
+
+<p>–proxy-digest Use Digest authentication on the proxy (H)</p>
+
+<p>–proxy-negotiate Use HTTP Negotiate (SPNEGO) authentication on the proxy (H)</p>
+
+<p>–proxy-ntlm Use NTLM authentication on the proxy (H)</p>
+
+<p>–proxy-service-name NAME SPNEGO proxy service name</p>
+
+<p>-U, –proxy-user USER[:PASSWORD] Proxy user and password</p>
+
+<p>etc</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

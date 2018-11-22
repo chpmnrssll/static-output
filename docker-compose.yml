@@ -1,0 +1,28 @@
+version: '3.1'
+
+services:
+  build:
+    command: >
+      bash -c "
+      sudo apt-get update -qq &&
+      wget https://github.com/jgm/pandoc/releases/download/2.4/pandoc-2.4-1-amd64.deb &&
+      dpkg -i pandoc-2.4-1-amd64.deb &&
+      jekyll build
+      "
+    image: jekyll/jekyll:latest
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/srv/jekyll
+
+  dev:
+    command: >
+      bash -c "
+      jekyll serve --force_polling --livereload --watch
+      "
+    image: jekyll/jekyll:latest
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/srv/jekyll
+      # - .:/usr/local/bundle

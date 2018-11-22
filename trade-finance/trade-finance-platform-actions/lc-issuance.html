@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="lc-issuance" />
+  
+  <meta name="infotype" content="task" />
+  
+  
+  <meta name="capabilities" content="actions" />
+  
+  
+  
+  <meta name="product" content="Trade Finance" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="lc-issuance">LC Issuance</h1>
+
+<p>The Issuing Bankreceives access to the read-only LC-application.</p>
+
+<p>To complete the action, the user at the Issuing Bank must click <em><strong>Accept LC</strong></em>, upload an LC document and add an <em><strong>Issuing Bank LC reference</strong></em>. The LC document can be a <em><strong>MT700 message</strong></em> or for non-swift LCs (for example a direct LC to Beneficiary) a Bank headed LC document. After this is done, a notification of the uploaded and shared LCdocument is sent to the following  shared parties:</p>
+
+<p><strong>For non-direct LCs (has Advising Bank on participants screen):</strong></p>
+
+<ul>
+  <li>Applicant and Advising Bank</li>
+</ul>
+
+<p><strong>For direct LCs (No Advising Bank on participants screen)</strong></p>
+
+<ul>
+  <li>Applicant and Beneficiary</li>
+</ul>
+
+<h4 id="accepted-lc-message-to-vakt">Accepted LC message to VAKT</h4>
+
+<p>If the LC application is accepted by the Issuing Bank, komgo sends a notification to the stakeholders (buyer &amp; seller) on the VAKT trading platform to inform them that the LC has been issued.</p>
+
+<h4 id="reject-lc">Reject LC</h4>
+
+<p>An Issuing Bank can reject the LC received from its Applicant if required by clicking <em><strong>Reject</strong></em>. The Issuing Bank can also choose to include a rejection comment. After this is done, a notification of the rejection is sent to the Applicant.</p>
+
+<h4 id="rejected-lc-message-to-vakt">Rejected LC message to VAKT</h4>
+
+<p>komgo sends a notification to the operator on the VAKT trading platform to inform them that the LC application has been rejected.</p>
+
+<h4 id="reapply-for-lc">Reapply for LC</h4>
+
+<p>Applicants can click <em><strong>Reapply for LC</strong></em> on the Trade Details screen or Trade Dashboard for a trade with status shown as_LC request rejected_.</p>
+
+<p>An applicant can send a new re-application form under the same conditions as the <em><strong>Apply for LC</strong></em> button. This includes sending notifications, tasks and VAKT-messages as per the <em><strong>Apply for LC</strong></em> button.</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

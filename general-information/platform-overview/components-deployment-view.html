@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="components-deployment-view" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="components-deployment-view">Components (Deployment View)</h1>
+
+<h4 id="kaleido-quorum-blockchain-node">Kaleido Quorum Blockchain Node</h4>
+
+<p>komgo platform uses Quorum 2.1.0 with Istanbul BFT Consensus. Transactions between participants are recorded in Private Smart Contracts on the Quorum Blockchain. The komgo Address book / Company registry is also managed as a Public Smart Contract on the same network.</p>
+
+<p>The blockchain nodes are fully managed by Kaliedo (<a href="https://kaleido.io">https://kaleido.io</a>), a Blockchain SaaS offering from Consensys.</p>
+
+<ul>
+  <li>Every member company would independently register with Kaleido and create an Account</li>
+  <li>For fully-managed members, komgo will create a separate Kaleido account on behalf of each member</li>
+  <li>As part of onboarding process, komgo will send an invite to the newly created kaleido account to allow the account to create a quorum node and join the komgo blockchain network</li>
+  <li>komgo will maintain a production network, and a QA network. Member companies will be able to join to both networks using different Kaleido Accounts (it is strongly discouraged to use the same kaleido account to join both QA and PROD networks)</li>
+</ul>
+
+<h4 id="keycloak-identity-management">Keycloak Identity Management</h4>
+
+<p>komgo Application uses Keycloak Identity Management server for Authentication and Access Control.</p>
+
+<ul>
+  <li>Every member will run their own keycloak instance in docker containers (hosted on-premise or on cloud, or fully managed by komgo)</li>
+  <li>Member company administrator will setup users, roles, and permissions. This keycloak instance can also be interfaced with Company’s identity management server for single-sign on.</li>
+  <li>Keycloak uses PostGreSQL for persisting the IAM data. Companies can choose to host the PostGre DB on docker as well, or create a DB in their infrastructure, and provide the connection details to the keyclock instance</li>
+  <li>komgo will run a keycloak instance that will be setup with service accounts for all members and partner platforms. These credentials will be used by the member companies to connect to various platform services</li>
+</ul>
+
+<h4 id="rabbitmq-message-broker">RabbitMQ Message Broker</h4>
+
+<p>komgo platform uses Advanced Message Queueing Protocol (AMQP 0.91) messaging using Rabbit MQ for communication between member nodes and partner platforms (between Bank and Corporate, Bank to Bank, Corporate on komgo and Corporate on VAKT Partner platform, etc)</p>
+
+<ul>
+  <li>komgo hosts a “Common Broker” that will contain “One Exchange” per member. Members can send and receive messages through this exchange</li>
+  <li>Members will be issued a “Static ID” by komgo, that will be used for addressing the participants on the messages.</li>
+  <li>Each Member will host an “Internal RabbitMQ Broker” that will be used by the microservices to interact asynchronously with each other.</li>
+</ul>
+
+<h4 id="mongodb">MongoDB</h4>
+
+<p>Every member node will maintain a local MongoDB, among other things, it will contain</p>
+
+<ul>
+  <li>cache of all blockchain transactions for that member,</li>
+  <li>cache of all reference data (received from komgo rest API),</li>
+  <li>cache of all documents (received from member companies via RabbitMQ messages)</li>
+  <li>Draft data entered in UI</li>
+  <li>User preferences</li>
+  <li>Audit tracking of all user actions</li>
+</ul>
+
+<p>Members can choose to host MongoDB inside the docker container, or create a DB in their infrastructure, and provide the connection details to all the docker containers that access the DB</p>
+
+<h4 id="microservices-api-gateway">Microservices API, Gateway</h4>
+
+<p>Every member node will run a node.js based API Gateway and several microservices (provided as docker images by komgo). The microservices perform all business rules / workflows, and support the Front End Application. Access control for the services will be via Keycloak.</p>
+
+<h4 id="front-end-application">Front-end Application</h4>
+
+<p>Every member node will run a react based front-end application, delivered as a docker image. The front end application will connect to the micro-services, and will be access controlled via keycloak.</p>
+
+<h4 id="kubernetes-cluster">Kubernetes Cluster</h4>
+
+<p>All the docker images delivered by komgo are compatible with Kubernetes, and can be deployed in a Kubernetes cluster.</p>
+
+<p>It would be the responsibility of the Member Company to manage the kubernetes cluster configuration, komgo will not provide the configuration.</p>
+
+<p>The fully managed instances managed by komgo are being deployed on a Kubernetes cluster.</p>
+
+<p>Troubleshooting Kubernetes configurations would be the responsibility of Member Companies, and komgo will not provide support.</p>
+
+<h4 id="log-streaming">Log streaming</h4>
+
+<p>komgo services write logs in a logstash compatible format, and can be routed to any log monitoring platform such as Kibana.</p>
+
+<p>Kaleido supports AWS CloudWatch for Log streaming, and CloudWatch can be configured to export or stream logs to other end points.</p>
+
+<TODO: Provide="" instructions="" on="" how="" to="" configure="" logstash="" route="" logs="" monitoring="" tool="" of="" their="" choice.="">
+
+#### Topology - Fully Managed offering \(Hosting by komgo/Consensys\)
+
+![](/assets/technical_guide_16.png)
+
+#### Topology - Self Managed Solution \(aka Hybrid Solution\)
+
+![](/assets/technical_guide_17.png)
+
+
+</TODO:>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

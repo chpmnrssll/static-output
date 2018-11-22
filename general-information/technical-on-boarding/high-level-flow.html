@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="high-level-flow" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="high-level-flow">High level flow</h1>
+
+<p>After the Member Company completes the business on-boarding<TODO: Include="" link="" here="" to="" business="" on-boarding="" document="">, the IT Administrator of the Member Company can start to perform the technical on-boarding steps by working with the komgo support Admin</TODO:></p>
+
+<p>High level steps are:</p>
+
+<ul>
+  <li>komgo will
+    <ul>
+      <li>Send Invitation to Member Company to sign-up and join komgo Blockchain network hosted at <a href="https://kaleido.io">https://kaleido.io</a></li>
+    </ul>
+  </li>
+  <li>Member Company IT Administrator will
+    <ul>
+      <li>Accept the invitation, and sign-up at Kaleido. Choose the appropriate support level (Basic / Pro / Enterprise) &lt;TODO: Support level selection - where does that happen? Done during business onboarding? How is this configured in Kaleido?&gt;</li>
+      <li>Create a Blockchain Node in QA and Production networks</li>
+      <li>Optionally, configure Log-Streaming to receive Blockchain logs into central Corporate repository</li>
+      <li>Note down the Constellation Public Keys (To be shared with komgo in future step)</li>
+    </ul>
+  </li>
+  <li>komgo will
+    <ul>
+      <li>Generate a unique multi-network identifier (komgo MNID) for the Company, add the company to “komgo Company Registry” (stored in the komgo Blockchain network using Ethereum Name Service (ENS) Contracts).</li>
+      <li>Record Member Company’s Legal Name, address, Country code in the Company Registry as provided during the business on-boarding.</li>
+      <li>Generate Harbor user id/password.</li>
+      <li>Generate Member Company credentials for komgo Common Broker access</li>
+      <li>Generate Member Company credentials in komgo Keycloak Server (for komgo API access) [Not needed for first release. Post Nov]</li>
+      <li>Send all of the above information in an encrypted email to the contact email provided during business onboarding.</li>
+    </ul>
+  </li>
+  <li>Member Company IT Administrator will
+    <ul>
+      <li>Open Harbor ip/ports so that deployment server can access the repository</li>
+      <li>Access Harbor to download the reference scripts, adopt those and create scripts based on Member Company’s specific requirements</li>
+      <li>Configure all secrets in the env file (will be managed via keyVault in future)</li>
+      <li>Download and run the docker images (via docker-compose or kubernetes)</li>
+      <li>Generate Company Ethereum Signing Keys</li>
+      <li>Generate Company RSA Signing / Encryption Keys</li>
+      <li>Send Blockchain Constellation Public Key, Ethereum Signing Key, RSA Signing Key to komgo via secure email</li>
+    </ul>
+  </li>
+  <li>komgo will
+    <ul>
+      <li>Validate the Keys</li>
+      <li>If Member Company is pre-authorized to be a “Validator node” (as part of business onboarding), promote it at this point</li>
+      <li>Activate the Common Broker account for the Member Company, create Company specific Exchanges, Queues</li>
+      <li>Publish the Member Company Constellation Keys in komgo Company Registry</li>
+      <li>Send “GOOD TO GO” Notification</li>
+    </ul>
+  </li>
+  <li>Member Company Administrator will
+    <ul>
+      <li>Start the services</li>
+      <li>Perform Environment Health Check</li>
+      <li>Communicate to komgo that they are “UP AND RUNNING”</li>
+    </ul>
+  </li>
+</ul>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

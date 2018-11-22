@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="download" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="download">Download</h1>
+
+<p>komgo provides a docker-compose file as a convenience, that pulls the compatible versions of all necessary docker images. These scripts are for reference only, companies need to create their own scripts based on their security policies.</p>
+
+<p>Several templates are provided:</p>
+
+<ul>
+  <li>Default (run all components as docker images, microservices using unsecured http. Must not be used for Production)</li>
+  <li>External DB (run all services in docker, connecting to MongoDB and PostGre db hosted externally)</li>
+  <li>Ssl (run all components as docker images, microservices using https)</li>
+  <li>Ssl  Segregated (runs all components as docker images, komgo node is segregated into Data zone, Business zone, and and Presentation zone)</li>
+  <li>Data zone has keycloak DB, Mongo DB</li>
+  <li>Presentation zone has UI docker containers</li>
+  <li>Business zone has all other containers including microservices, Rabbit MQ, etc.</li>
+</ul>
+
+<p>Download the files into the server from where the images will be run.</p>
+
+<p>Currently, these images are uploaded to bitbucket, and early adopters are granted access. In future, this will be streamlined, and probably made available via Harbor as well.</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

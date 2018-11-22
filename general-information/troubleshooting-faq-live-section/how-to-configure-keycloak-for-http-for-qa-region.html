@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="how-to-configure-keycloak-for-http-for-qa-region" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="how-to-configure-keycloak-for-http-for-qa-region">How to configure Keycloak for HTTP (for QA region)</h1>
+
+<p><strong>Problem:</strong></p>
+
+<p>If you want to enable keycloak to respond to non https requests normally (DEVELOPMENT ONLY - of course)</p>
+
+<p><strong>Solution:</strong></p>
+
+<p>Step-by-step guide</p>
+
+<ol>
+  <li>
+    <p>Edit the configure.sh script and add the following lines</p>
+
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>echo "[ Set sslRequired for komgo (and master) realms according to variable ]"
+docker exec komgo-keycloak /opt/jboss/keycloak/bin/kcadm.sh update realms/komgo -s sslRequired=$KEYCLOAK_SSL_REQUIRED
+docker exec komgo-keycloak /opt/jboss/keycloak/bin/kcadm.sh update realms/master -s sslRequired=$KEYCLOAK_SSL_REQUIRED
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>Attention, these command, one for each realm, only work after the kcadm.sh has been connected with login password which is performed in</p>
+
+<p>/opt/jboss/keycloak/bin/scripts/keycloak-init.sh</p>
+
+<ol>
+  <li>In this script or where you set all your variables, set the KEYCLOAK_SSL_REQUIRED to
+    <ol>
+      <li>“none” if you need disabling mandatory https request (DEVELOPMENT ONLY)</li>
+      <li>“external” (default) if only requests from outside the docker or docker network should be https</li>
+      <li>“all” if all requests should be https</li>
+    </ol>
+  </li>
+  <li>Restart keycloak docker instance (or all dockers), et voila</li>
+</ol>
+
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="installation-and-configuration" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="installation-and-configuration">Installation and Configuration</h1>
+
+<p>Installation involves the following steps:</p>
+
+<ul>
+  <li>Create a .env file (copy from sample .env file provided), and configure the following:</li>
+  <li>Kaleido host, userid, password</li>
+  <li>Keycloak auth url (replace localhost with your domain name)</li>
+  <li>Access control allow origin url (replace localhost with your domain name)</li>
+  <li>Common Broker userid, password</li>
+  <li>HTTP / HTTPS Proxy address (if your organization uses proxy servers)</li>
+  <li>Login to Harbor registry</li>
+  <li>Start the docker images by running “docker-compose up”</li>
+  <li>Configure the components</li>
+  <li>Setup API roles</li>
+  <li>Setup reference data for Documents</li>
+  <li>Configure Keycloak</li>
+  <li>Configure Rabbit MQ Local Broker</li>
+  <li>Restart all microservices</li>
+</ul>
+
+<p><img src="/assets/technical_guide_21.png" alt="" /></p>
+
+<p>The specific commands will be provided in the readme file, and the file will be updated with relevant changes for every release. Please follow that for detailed instructions.</p>
+
+<p>&lt;TODO: The specific setup instructions for each release will be entered in to a .md file by developers/devops. This file will be converted into release document/technical guide html by the script/tool being built by 3di. Post MVP Phase 1. In the interim, the installation instructions will be provided in the readme.md file under each docker image&gt;</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

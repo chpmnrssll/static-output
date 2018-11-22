@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="platform-health-checklist" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="platform-health-checklist">Platform Health Checklist</h1>
+
+<h4 id="check-if-all-containers-are-running">Check if all containers are running</h4>
+
+<p>Ensure the following containers are running at all times:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Purpose</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>komgo-client</td>
+      <td>Front End</td>
+      <td>UI Service</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>komgo-api-roles</td>
+      <td>IAM</td>
+      <td>Roles Management Service</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>komgo-api-auth</td>
+      <td>IAM</td>
+      <td>IAM Service</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>komgo-api-gateway</td>
+      <td>Business</td>
+      <td>API Gateway Service</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>komgo-api-notif</td>
+      <td>Business</td>
+      <td>Notifications Service</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>komgo-api-users</td>
+      <td>IAM</td>
+      <td>Users Management Service</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>komgo-api-signer</td>
+      <td>Key Signing</td>
+      <td>Ethereum, RSA Key Generation, Encryption, Signing Service</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>komgo-api-documents</td>
+      <td>Business</td>
+      <td>Documents Management (kite) Service</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>komgo-api-registry</td>
+      <td>Business</td>
+      <td>ENS Company Registry Management Service</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>komgo-api-coverage</td>
+      <td>Business</td>
+      <td>Manage Client Coverage</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>komgo-api-tradefinance</td>
+      <td>Business</td>
+      <td>Trade Finance Functions</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>komgo-api-trade-cargo</td>
+      <td>Business</td>
+      <td>Trade Cargo Information</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>komgo-keycloak</td>
+      <td>IAM</td>
+      <td>Keycloak IAM Server</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>komgo-keycloak-db</td>
+      <td>Database</td>
+      <td>Keycloak Database</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>komgo-event-management</td>
+      <td>Business</td>
+      <td>Event Management</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td><internal MQ="" host=""></internal></td>
+      <td>Business</td>
+      <td>Internal MQ Server</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td>mongo</td>
+      <td>Database</td>
+      <td>Mongo DB Server</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Command: 
+docker ps -a</p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;TODO: include docker ps output here&gt;
+</code></pre></div></div>
+
+<h4 id="check-if-all-containers-are-running-1">Check if all containers are running</h4>
+
+<p>Open the Web application url from a browser, and login to the application
+Verify the logs of the docker container komgo-api-gateway
+Ensure that 200 OK status is shown</p>
+
+<p>Command:
+Docker logs komgo-api-gateway</p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>172.18.0.1 - - [20/Sep/2018:08:50:20 +0000] "GET / HTTP/1.1" 200 649 "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36"
+</code></pre></div></div>
+
+<h4 id="check-if-all-microservices-started">Check if all microservices started</h4>
+
+<p>For every docker container whose name starts with komgo-api-*, verify the logs</p>
+
+<p>Ensure that “Server Started!” message is shown</p>
+
+<p>Command:
+Docker logs komgo-api-<servicename></servicename></p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>info:
+------------
+Server Started!
+------------
+
+info: listening on port 80
+</code></pre></div></div>
+
+<h4 id="check-if-keycloak-server-started">Check if keycloak server started</h4>
+
+<p>Verify the docker logs for komgo-keycloak container</p>
+
+<p>Ensure that the log states “Keycloak 4.1.0 Final (WildFly core 3.0.8 Final) started in nnnnn ms - Started” (note, the version numbers may be different in your output)</p>
+
+<p>Command:
+Docker logs komgo-keycloak</p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>13:26:00,308 INFO [org.jboss.as.server] (ServerService Thread Pool -- 45) WFLYSRV0010: Deployed "keycloak-server.war" (runtime-name : "keycloak-server.war")
+13:26:00,378 INFO [org.jboss.as.server] (Controller Boot Thread) WFLYSRV0212: Resuming server
+13:26:00,383 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0060: Http management interface listening on http://127.0.0.1:9990/management
+13:26:00,383 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0051: Admin console listening on http://127.0.0.1:9990
+13:26:00,383 INFO [org.jboss.as] (Controller Boot Thread) WFLYSRV0025: Keycloak 4.1.0.Final (WildFly Core 3.0.8.Final) started in 14464ms - Started 546 of 882 services (604 services are lazy, passive or on-demand)
+</code></pre></div></div>
+
+<h4 id="check-if-rabbitmq-broker-started">Check if RabbitMQ Broker started</h4>
+<p>Verify the docker logs for komgo-internal-mq container</p>
+
+<p>Ensure that the log states <code class="highlighter-rouge">accepting AMQP connection</code></p>
+
+<p>Command:
+Docker logs komgo-internal-mq</p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-09-20 13:26:18.911 [info] &lt;0.581.0&gt; accepting AMQP connection &lt;0.581.0&gt; (172.19.0.13:48154 -&gt; 172.19.0.9:5672)
+2018-09-20 13:26:18.978 [info] &lt;0.581.0&gt; connection &lt;0.581.0&gt; (172.19.0.13:48154 -&gt; 172.19.0.9:5672): user 'komgoInternalUser' authenticated and granted access to vhost '/'
+</code></pre></div></div>
+
+<h4 id="check-if-postgre-db-for-keycloak-started">Check if PostGre DB (For Keycloak) started</h4>
+
+<p>Verify the docker logs for komgo-keycloak-db container</p>
+
+<p>Ensure that the log states <code class="highlighter-rouge">database system is ready to accept connections</code></p>
+
+<p>Command:
+Docker logs komgo-keycloak-db</p>
+
+<p>Expected Output:</p>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2018-09-20 13:25:26.246 UTC [1] LOG: database system is ready to accept connections
+</code></pre></div></div>
+
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

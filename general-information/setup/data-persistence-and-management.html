@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="data-persistence-and-management" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="data-persistence-and-management">Data Persistence and Management</h1>
+
+<p>All microservices and front end containers are stateless, and they connect to Mongo DB for persisting the business data.</p>
+
+<p>Keycloak container persists its data to a PostGreSQL db.</p>
+
+<p>There are two options for Member companies:</p>
+
+<ul>
+  <li>If you have dedicated DBAs that can create and manage MongoDB and PostGreSQL databases, create those databases on separate servers, and configure the connection string in the komgo kapsule docker containers</li>
+  <li>Alternatively, start up the default kapsule docker containers for MongoDB and PostGreSQL, and configure to store/backup the docker storage volume mounted for those containers. The volumes will contain the business data.</li>
+</ul>
+
+<p>It would be the responsibility of Member Company administrators to backup and maintain the storage volumes / external MongoDB, PostGreSQL databases.</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>

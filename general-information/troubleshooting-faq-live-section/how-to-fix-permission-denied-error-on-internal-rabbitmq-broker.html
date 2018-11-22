@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <!--othermetastart-->
+  
+  <meta name="document-name" content="how-to-fix-permission-denied-error-on-internal-rabbitmq-broker" />
+  
+  <meta name="infotype" content="Overview" />
+  
+  
+  
+  
+  <meta name="product" content="Technical Guide" />
+  
+  
+  
+  <!--othermetaend-->
+
+  <title>
+    
+    
+    
+  </title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <nav class="sidebar">
+  <div class="logo">
+    <a href="/help-portal/">
+      <img src="/help-portal/assets/images/Logo.svg" alt="Komgo">
+    </a>
+  </div>
+  <div class="dashboard">
+    <h1 id="test-content">Test Content</h1>
+<ul>
+<li><a href="tasks.html">Task Dashboard</a></li>
+<li><a href="request-template.html">Request Template</a></li>
+<li><a href="styleGuide.html">Style Guide</a></li>
+</ul>
+
+  </div>
+</nav>
+
+    <main class="content">
+      <h1 id="how-to-fix-permission-denied-error-on-internal-rabbitmq-broker">How to fix “Permission Denied” error on Internal RabbitMQ Broker</h1>
+
+<p><strong>Problem:</strong></p>
+
+<p>With the latest version of docker-compose-project, which includes RMQ, some issues arise in_ komgo-internal-mq_ container initialization. The problem is related to volumes’ creation on host: since docker engine runs with root access, the folders are created with root owner/group. This leads to a problem when the start/configure scripts are executed with non root user (<em>komgo-internal-mq</em> never starts and configuration fails).</p>
+
+<p>Running as single server</p>
+
+<p>/usr/lib/rabbitmq/bin/rabbitmq-server: 51: /usr/lib/rabbitmq/bin/rabbitmq-server: cannot create 
+/var/lib/rabbitmq/mnesia/rabbit@komgo-internal-mq.pid: Permission denied</p>
+
+<p>Failed to write pid file: /var/lib/rabbitmq/mnesia/rabbit@komgo-internal-mq.pid</p>
+
+<p>**Workaround: **</p>
+
+<p>Giving full permissions on volumes’ folders would probably bring security issues in production, so a possible solution is to create the folders with a more limited set of permissions.</p>
+
+<p>The idea is to create the folders beforehand, change their group to <em>docker</em> and permissions to <em>770 (-rwxrwx—)</em>, e.g:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo mkdir .rabbitmqdata
+sudo chgrp -R docker .rabbitmqdata
+sudo chmod -R 770 .rabbitmqdata
+</code></pre></div></div>
+
+<p><img src="/assets/technical_guide_22.png" alt="" /></p>
+
+<p>With this set of permissions non-root users can write files in the volumes and start/configure scripts run with no errors.</p>
+
+<p><strong>Note:</strong> As you can see,_ .keycloak-db_ folder’s owner is 999 (unknown user). This happens after running the start script, probably because the user inside docker engine acquires ownership of the folder. This needs further investigation.</p>
+
+    </main>
+  </div>
+  <link rel="stylesheet" href="/help-portal/assets/css/MyFontsWebfontsKit.css">
+  <link rel="stylesheet" href="/help-portal/assets/css/main.css">
+</body>
+
+</html>
